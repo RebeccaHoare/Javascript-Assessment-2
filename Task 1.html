@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html> <head>
+<title>Assessment 2</title>
+
+<style type="text/css">
+
+
+body {
+  font-family:sans-serif;
+  font-weight:700;
+  font-size:15pt;
+} 
+
+
+#container div{
+  width: 2em;
+  height: 1.5em;
+  float: left;
+  padding: 1em;
+  margin: 1vw;
+  padding-top:1.5em;
+  text-align: center;
+  background-color: #000;
+}
+</style>
+
+<script type="text/javascript">
+var selected = null;  // nothing selected at first
+var moves = 0;
+var size = 3;
+
+
+
+
+
+function resize(){
+    if(confirm("This will change the number of colors, do you want to continue?")) {
+	var form = document.getElementById("config");
+
+	// Reset the board by deleting all existing boxes
+	var container = document.getElementById("container");
+	while (container.children.length > 0) {
+	    container.removeChild(container.firstElementChild);
+	}
+
+	// this sets the new size/ number of boxes that the person typed in 
+	size = form.elements["size"].value;
+	
+	// this resets the state
+	moves = 0;
+	selected = null;
+	var status = document.getElementById("status");
+	
+	// Sets up the board again
+	setup();
+    }
+}
+
+
+function randomColor()
+
+// generates a random color
+// Math.floor returns the largest integer 
+// Math.random returns a random number from 0 up to 1
+// Math.pow returns the value of the first value times by second value
+
+{
+    var color = Math.floor(Math.random() * Math.pow(256, 3)).toString(16);
+    while(color.length < 6) {
+        color = "0" + color;
+    }
+    return "#" + color;
+}
+
+function setup() {
+    var container = document.getElementById("container");
+	var margin = "5";
+
+    // this creates a box
+    for (var i = 0; i < size; i++) {
+	// Create a box and set the margins so that they double from 5px for each box
+	var box = document.createElement("div");
+	var margin  = margin * "2";
+	box.style.marginLeft = margin + "px";
+	box.className = "unselected";
+        box.setAttribute("onClick", "select(this)");
+
+		box.style.backgroundColor = randomColor();
+
+	// Add into the document
+	container.appendChild(box);
+    }
+}
+</script>
+</head>
+
+<!-- makes the body perform the setup function -->
+<body onLoad="setup();">
+
+<form id="config">
+Enter no. of colors here: <input name="size" type="text" />
+<input type="button" value="Go" onClick="resize();" />
+</form><br />
+
+
+
+<div id="container">
+</div>
+
+
+
+</body> </html>

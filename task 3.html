@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Task3</title>
+	<meta Charset = "utf-8">
+</head>
+<body>
+
+<!-- Creating a form where all the information will be entered -->
+<form id= "myForm">
+<!-- This is where the individual will enter their first , this is using text input-->
+  First name:<br>
+  <input type="text"  id="firstname">
+  <br>
+<!-- This is where the individual will enter their last name, this is using text input-->
+  Last name:<br>
+  <input type="text"  id="lastname">
+  <br><br>
+<!-- This is where the individual will enter their date of birth, this is using date input
+which allows them to select dates and month using a calendar -->
+  Date of Birth: <br>
+  <input type = "date" id = "dateofbirth">
+  <br> <br>
+<!-- this allows the user to select options from a drop-down list  -->
+  Eye colour: <br>
+  <select name = "eyecolor" id = "eyecolor">
+  <option value = "brown">Brown</option>
+  <option value = "grey">Grey</option>
+  <option value = "green">Green</option>
+  <option value = "other">Other</option>
+  </select>
+  <br><br>
+  
+  <!--  buttons created under the form that perform functions-->
+  <button onClick = "Display()">Display</button>
+  <button type = "reset" value = "reset" > Reset</button>
+  
+  <!-- This is where the information will displayed after pressing the display button-->
+  <p id ="display"></p>
+  
+</form> 
+
+<script>
+// this creates arrays for the different sections 
+	var first_name = [];
+	var last_name = [];
+	var date_of_birth = [];
+	var eye_color = [];
+	var print = "";
+
+function Display() {
+	
+// this gets the value held by the different texts in the form in the different sections	
+	var firstName = document.getElementById("firstname").value;
+	var lastName = document.getElementById("lastname").value;
+	var dateOfBirth = document.getElementById("dateofbirth").value;
+	var eyeColor = document.getElementById("eyecolor").value;
+	
+// .push adds new items to the end of the array's given and returns the new length 
+	first_name.push(firstName);
+	last_name.push(lastName);
+	date_of_birth.push(dateOfBirth);
+	eye_color.push(eyeColor);
+	
+	for(var i = 0; first_name.length; i++) { 
+	// this prints the value held in the array along with the words stated in quotes 
+		print += "First Name: " + first_name[i] + " ~ " + "Last Name: " + last_name[i] + " ~ " + "Date of Birth: " + date_of_birth[i] + " ~ " + "Eye Color: " + eye_color[i] + "<br>" ;
+			document.getElementById("display").innerHTML = print;
+			
+			// this removes the first item from the array, so the same information is not printed again
+			first_name.shift();
+			last_name.shift();
+			date_of_birth.shift();
+			eye_color.shift();
+	}
+	// this prevents the default action occurring for a method by canceling it 
+	event.preventDefault();
+	
+	document.getElementById("myForm").reset();
+
+}
+</script>
+
+</body>
+</html>

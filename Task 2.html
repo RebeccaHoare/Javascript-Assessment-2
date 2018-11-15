@@ -1,0 +1,63 @@
+
+
+<!DOCTYPE html>
+<html> <head>
+<title>Task 2 </title>
+
+<style type="text/css">
+
+body{
+	font-size: 150%;
+	font-family:sans-serif;
+	font-weight:700;
+	font-size:15pt;
+}
+
+#container{
+  width: 10px;
+  height: 10px;
+  background-color: red;
+ }
+
+ </style>
+ 
+<script>
+
+// this function makes the square go right using float 
+function goRight() {
+  document.getElementById("container").style.float = "Right";
+}
+// this function makes the square go left using float 
+function goLeft() {
+ document.getElementById("container").style.float = "Left";
+}
+// this function makes the square go to the middle of the page
+// float cannot be used to make the square go center 
+// the margin are used to make the square go in the middle 
+function goCentre() {
+ document.getElementById("container").style.float = "none";
+ document.getElementById("container").style.margin = "0 auto";
+}
+</script>
+</head>
+
+<body>
+
+<!-- This is a from with different buttons linked to different functions -->
+<form id="form">
+<span>Choose a position: </span><br>
+<!--radio button which moves the square to the left -->
+<input type="radio" name="pos" value="Left" checked onclick = "goLeft()"/><label for="Left">Left</label>
+<!-- radio button which moves the square to the middle -->
+<input type="radio" name="pos" value="Centre" onClick = "goCentre()" /><label for="Centre">Centre</label>
+<!-- radio button which moves the square to the right-->
+<input type="radio" name="pos" value="Right" onClick = "goRight()"/><label for="Right">Right</label><br>
+
+
+
+</form>
+<div id="container"></div>
+
+
+
+</body> </html>
